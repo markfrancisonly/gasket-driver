@@ -1125,6 +1125,8 @@ remove_device:
 	pci_disable_device(pci_dev);
 }
 
+#ifdef CONFIG_PM_SLEEP
+
 static int apex_pci_suspend(struct pci_dev *pci_dev, pm_message_t state) {
 	struct apex_dev *apex_dev = pci_get_drvdata(pci_dev);
 	struct gasket_dev *gasket_dev;
@@ -1162,6 +1164,7 @@ static int apex_pci_resume(struct pci_dev *pci_dev)
 
 	return 0;
 }
+#endif
 
 static struct gasket_driver_desc apex_desc = {
 	.name = "apex",
